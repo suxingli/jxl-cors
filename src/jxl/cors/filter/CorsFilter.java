@@ -39,9 +39,9 @@ public class CorsFilter implements Filter {
 	private static final String ACCESS_CONTROL_ALLOW_METHODS = "Access-Control-Allow-Methods";
 	private static final String ACCESS_CONTROL_ALLOW_CREDENTIALS = "Access-Control-Allow-Credentials";
 	private static final String CONTENT_TYPE = "application/json; charset=UTF-8";
-	private String allow_methods; // 允许跨域请求的方法
-	private String allow_credentials; // 允许跨域请求的方法
-	private List<String> allow_origins = new ArrayList<String>(0); // 允许跨域请求的域列表
+	private static String allow_methods; // 允许跨域请求的方法
+	private static String allow_credentials; // 是否允许发送Cookie
+	private static List<String> allow_origins = new ArrayList<String>(0); // 允许跨域请求的域列表
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -107,5 +107,35 @@ public class CorsFilter implements Filter {
 	@Override
 	public void destroy() {
 
+	}
+
+	/**
+	 * 获取允许跨域请求的方法
+	 * @author 苏行利
+	 * @return 允许跨域请求的方法
+	 * @date 2019-08-07 17:44:55
+	 */
+	public static String getAllow_methods() {
+		return allow_methods;
+	}
+
+	/**
+	 * 是否允许发送Cookie
+	 * @author 苏行利
+	 * @return 是否允许发送Cookie
+	 * @date 2019-08-07 17:44:58
+	 */
+	public static String getAllow_credentials() {
+		return allow_credentials;
+	}
+
+	/**
+	 * 获取允许跨域请求的域列表
+	 * @author 苏行利
+	 * @return 允许跨域请求的域列表
+	 * @date 2019-08-07 17:45:04
+	 */
+	public static List<String> getAllow_origins() {
+		return allow_origins;
 	}
 }
