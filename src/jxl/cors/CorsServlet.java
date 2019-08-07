@@ -1,8 +1,6 @@
 package jxl.cors;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +18,8 @@ import jxl.cors.filter.CorsFilter;
 @WebServlet(name = "cors", value = "/cors", loadOnStartup = 1)
 public class CorsServlet extends HttpServlet {
 	private static final long serialVersionUID = -2522590307790871960L;
+	private static final String CONTENT_TYPE = "text/html; charset=UTF-8";
+	private static final String PAGE = "/WEB-INF/cors/index.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,16 +28,12 @@ public class CorsServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String allow_methods = CorsFilter.getAllow_methods();
-		String allow_credentials = CorsFilter.getAllow_credentials();
-		List<String> allow_origins = CorsFilter.getAllow_origins();
-		StringBuffer buffer = new StringBuffer();
-		for (int i = 0, len = allow_origins.size(); i < len; i++) {
-			buffer.append(allow_methods).append(" ").append(allow_credentials).append(" ").append(allow_origins.get(i)).append("\n");
-		}
-		PrintWriter writer = response.getWriter();
-		writer.write(buffer.toString());
-		writer.close();
+		response.setContentType(CONTENT_TYPE);
+		request.setAttribute("version", "1.0.2");
+		request.setAttribute("allow_methods", CorsFilter.getAllow_methods().replaceAll(" ", "").split(","));
+		request.setAttribute("allow_credentials", CorsFilter.getAllow_credentials());
+		request.setAttribute("allow_origins", CorsFilter.getAllow_origins());
+		request.getRequestDispatcher(PAGE).forward(request, response);
 	}
 
 }
