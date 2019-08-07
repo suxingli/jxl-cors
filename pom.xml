@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.suxingli</groupId>
 	<artifactId>jxl-cors</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>跨域工具包</name>
 	<url>https://github.com/suxingli/jxl-cors.git</url>
 	<description>处理跨域请求的工具包</description>
