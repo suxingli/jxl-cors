@@ -17,10 +17,8 @@
 		</style>
 	</head>
 	<body>
-		<c:forEach items="${allow_methods}" var="method">
 			<c:forEach items="${allow_origins}" var="origin">
-				<div>${method}&nbsp;${origin}&nbsp;${allow_credentials}</div>
+				<div>${allow_methods}&nbsp;${origin}&nbsp;${allow_credentials}</div>
 			</c:forEach>
-		</c:forEach>
 	</body>
 </html>
